@@ -1,0 +1,16 @@
+body {
+  height: 100vh;
+}
+
+.actionBtn {
+  margin-right: 0.175em;
+  margin-left: 0.175em;
+}
+
+.table {
+  width: 98% !important;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: .8em !important;
+  font-weight: bold;
+}
