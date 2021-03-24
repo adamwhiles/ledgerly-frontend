@@ -1,5 +1,3 @@
-//import logo from "../logo.svg";
-//import "../css/login.css";
 import React, {useState, forwardRef} from "react";
 import {createPortal} from "react-dom";
 import {Modal, Section, Button, Form, Icon} from "react-bulma-components";
