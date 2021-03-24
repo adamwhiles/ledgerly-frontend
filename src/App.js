@@ -52,7 +52,7 @@ function App() {
         </div>
       </section>
 
-      <section class="is-fullheight has-background-primary">
+      <section className="is-fullheight has-background-primary">
         <BrowserRouter>
           <div className="content">
             <div>

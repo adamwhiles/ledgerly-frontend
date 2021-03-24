@@ -1,22 +1,72 @@
 //import logo from "../logo.svg";
 //import "../css/login.css";
-import React, {useState} from "react";
+import React, {useState, forwardRef} from "react";
+import {createPortal} from "react-dom";
 import {Modal, Section, Button, Form, Icon} from "react-bulma-components";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-  faTrashAlt,
-  faEdit,
   faDollarSign,
-  faCommentAlt
+  faCommentAlt,
+  faCalendarAlt
 } from "@fortawesome/free-solid-svg-icons";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const {Input, Field, Control, Label, Select} = Form;
 
 function AddModal(props) {
-  const [getCategory, setCategory] = useState("");
-  const [getType, setType] = useState("");
+  const [getCategory, setCategory] = useState("none");
+  const [getType, setType] = useState("none");
   const [getAmount, setAmount] = useState("");
   const [getDescription, setDescription] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+
+  const addEntry = async () => {
+    console.log(startDate);
+    try {
+      const ledger = await fetch("/api/addEntry", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        method: "POST",
+        body: JSON.stringify({
+          Date: startDate,
+          Amount: parseFloat(getAmount),
+          Description: getDescription,
+          Type: parseInt(getType),
+          Category: parseInt(getCategory)
+        })
+      });
+      const res = await ledger.json();
+      console.log(res.status);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const DateInput = forwardRef(({value, onClick}, ref) => {
+    return (
+      <Control iconLeft>
+        <>
+          <Input
+            type="text"
+            placeholder="Date"
+            value={value}
+            onClick={onClick}
+            readOnly
+          />
+        </>
+        <Icon align="left">
+          <FontAwesomeIcon
+            icon={faCalendarAlt}
+            onClick={() => alert("test")}
+            className="mr-1"
+          />
+        </Icon>
+      </Control>
+    );
+  });
 
   return (
     <Modal show={props.show} onClose={props.close}>
@@ -26,6 +76,18 @@ function AddModal(props) {
         </Modal.Card.Head>
         <Modal.Card.Body>
           <Field className="is-horizontal field-body">
+            <Field>
+              <DatePicker
+                id="date_field"
+                selected={startDate}
+                onChange={date => setStartDate(date)}
+                customInput={<DateInput />}
+                popperClassName="date_field"
+                popperContainer={({children}) =>
+                  createPortal(children, document.body)
+                }
+              />
+            </Field>
             <Field className="control is-expanded">
               <Control iconLeft>
                 <Input
@@ -64,7 +126,7 @@ function AddModal(props) {
             </Field>
           </Field>
           <Field className="is-horizontal field-body">
-            <Field>
+            <Field className="is-expanded">
               <Label size="small">Income/Expense</Label>
               <Control>
                 <Select
@@ -75,8 +137,8 @@ function AddModal(props) {
                   <option value="none" defaultValue>
                     Select One
                   </option>
-                  <option value="credit">Income</option>
-                  <option value="debit">Expense</option>
+                  <option value="1">Income</option>
+                  <option value="2">Expense</option>
                 </Select>
               </Control>
             </Field>
@@ -91,13 +153,28 @@ function AddModal(props) {
                   <option value="none" defaultValue>
                     Select One
                   </option>
-                  <option value="credit">Income</option>
-                  <option value="debit">Expense</option>
+                  {props.categories != null
+                    ? props.categories.map(e => {
+                        return (
+                          <option key={e.CategoryID} value={e.CategoryID}>
+                            {e.CategoryName}
+                          </option>
+                        );
+                      })
+                    : null}
                 </Select>
               </Control>
             </Field>
           </Field>
         </Modal.Card.Body>
+        <Modal.Card.Foot
+          style={{alignItems: "center", justifyContent: "right"}}
+        >
+          <Button className="is-primary" onClick={() => addEntry()}>
+            Add
+          </Button>
+          <Button className="is-danger">Cancel</Button>
+        </Modal.Card.Foot>
       </Modal.Card>
     </Modal>
   );

@@ -26,7 +26,11 @@ function MainLedger() {
     <div>
       {getAddModal}
       {getAddModal ? (
-        <AddModal show={getAddModal} close={() => setAddModal(false)} />
+        <AddModal
+          show={getAddModal}
+          close={() => setAddModal(false)}
+          categories={getEntries.categories}
+        />
       ) : null}
       <button
         className="button is-info is-light"

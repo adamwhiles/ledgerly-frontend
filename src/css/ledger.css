@@ -14,3 +14,7 @@ body {
   font-size: .8em !important;
   font-weight: bold;
 }
+
+.date_field {
+  z-index: 100;
+}
