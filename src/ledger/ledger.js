@@ -30,6 +30,7 @@ function MainLedger() {
           show={getAddModal}
           close={() => setAddModal(false)}
           categories={getEntries.categories}
+          update={setEntries}
         />
       ) : null}
       <button

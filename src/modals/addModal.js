@@ -39,7 +39,7 @@ function AddModal(props) {
         })
       });
       const res = await ledger.json();
-      console.log(res.status);
+      props.update(res);
     } catch (err) {
       console.log(err);
     }
