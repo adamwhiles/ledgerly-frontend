@@ -168,10 +168,10 @@ function AddModal(props) {
         <Modal.Card.Foot
           style={{alignItems: "center", justifyContent: "right"}}
         >
-          <Button className="is-primary" onClick={() => addEntry()}>
+          <Button className="credit" onClick={() => addEntry()}>
             Add
           </Button>
-          <Button className="is-danger">Cancel</Button>
+          <Button className="debit">Cancel</Button>
         </Modal.Card.Foot>
       </Modal.Card>
     </Modal>

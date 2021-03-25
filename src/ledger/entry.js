@@ -10,12 +10,14 @@ function Entry(props) {
   }
 
   return (
-    <tr>
-      <td width="10%">{props.data.Date}</td>
+    <tr className="ledgerCell">
+      <td width="10%">
+        <span className="tag">{props.data.Date}</span>
+      </td>
       <td>{props.data.Description}</td>
       <td width="5%">
         {props.data.Amount < 0.0 ? (
-          <span className="tag is-danger">
+          <span className="tag debit">
             <b>
               $
               {parseFloat(props.data.Amount).toLocaleString("en", {
@@ -24,7 +26,7 @@ function Entry(props) {
             </b>
           </span>
         ) : (
-          <span className="tag is-primary">
+          <span className="tag credit">
             <b>
               $
               {parseFloat(props.data.Amount).toLocaleString("en", {

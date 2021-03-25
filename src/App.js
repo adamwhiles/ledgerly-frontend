@@ -1,13 +1,24 @@
+import React, {useState} from "react";
 import {BrowserRouter, Route} from "react-router-dom";
+import useAsyncEffect from "use-async-effect";
 import LoginPage from "./components/login";
 import MainLedger from "./ledger/ledger";
 import "./css/ledger.css";
-//import './App.css';
 
 function App() {
+  useAsyncEffect(async () => {
+    try {
+      const ledger = await fetch("/api/getLedger");
+      const res = await ledger.json();
+      // /setEntries(res);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
   return (
     <>
-      <section className="hero is-primary">
+      <section className="hero header">
         <div className="hero-head">
           <nav className="navbar">
             <div className="container">
@@ -52,7 +63,7 @@ function App() {
         </div>
       </section>
 
-      <section className="is-fullheight has-background-primary">
+      <section className="is-fullheight">
         <BrowserRouter>
           <div className="content">
             <div>

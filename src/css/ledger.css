@@ -1,5 +1,31 @@
 body {
   height: 100vh;
+  background-color: #F5F5E9;
+}
+
+.header {
+  background-color: #274A50;
+}
+
+.header a {
+  color: #F5F5E9 !important;
+}
+
+.ledgerHead {
+  background-color: #274A50;
+}
+
+.ledgerHead th {
+  color: #F5F5E9 !important;
+}
+
+.ledgerCell {
+  background-color: #497C8B !important;
+}
+
+.ledgerMonth {
+  background-color: #274A50 !important;
+  font-size: 1.2em;
 }
 
 .actionBtn {
@@ -11,8 +37,29 @@ body {
   width: 98% !important;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1em;
   font-size: .8em !important;
   font-weight: bold;
+  background-color: #274A50;
+  color: #F5F5E9 !important;
+}
+
+.debit {
+  background-color: #bc6e7e !important;
+  color: #F5F5E9 !important;
+}
+
+.credit {
+  background-color: #398c79 !important;
+  color: #F5F5E9 !important;
+}
+
+.addButton {
+  color: #274A50 !important;
+}
+
+.table tbody {
+  background-color: #274A50 !important;
 }
 
 .date_field {
