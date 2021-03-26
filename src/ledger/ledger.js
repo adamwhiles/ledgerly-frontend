@@ -1,14 +1,14 @@
-//import logo from "../logo.svg";
-//import "../css/login.css";
 import React, {useState} from "react";
 import useAsyncEffect from "use-async-effect";
 import AddModal from "../modals/addModal";
+import EditModal from "../modals/editModal";
 import Entry from "./entry";
 
 function MainLedger() {
   const [getEntries, setEntries] = useState("");
   const [getAddModal, setAddModal] = useState(false);
-  const [getEditModal, setEditModal] = useState("false");
+  const [getEditModal, setEditModal] = useState(false);
+  const [getCurrentEntry, setCurrentEntry] = useState("");
 
   // These are variables we use when displaying the proper balance, 0 as the starting point
   // currentMonth is so we can keep track of when the next entry starts a new month and while and
@@ -26,15 +26,28 @@ function MainLedger() {
     }
   }, []);
 
+  const openEditModal = entry => {
+    setCurrentEntry(entry);
+    setEditModal(true);
+  };
+
   return (
     <div>
-      {getAddModal}
       {getAddModal ? (
         <AddModal
           show={getAddModal}
           close={() => setAddModal(false)}
           categories={getEntries.categories}
           update={setEntries}
+        />
+      ) : null}
+      {getEditModal ? (
+        <EditModal
+          show={getEditModal}
+          close={() => setEditModal(false)}
+          categories={getEntries.categories}
+          update={setEntries}
+          entry={getCurrentEntry}
         />
       ) : null}
 
@@ -92,14 +105,15 @@ function MainLedger() {
                 currentBalance =
                   parseFloat(currentBalance) + parseFloat(e.Amount);
                 entry = (
-                  <>
+                  <React.Fragment key={e.TransactionID.toString()}>
                     {entry}
                     <Entry
                       data={e}
-                      key={e.TransactionID}
                       balance={currentBalance.toFixed(2)}
+                      update={setEntries}
+                      editModal={openEditModal}
                     />
-                  </>
+                  </React.Fragment>
                 );
                 return entry;
               })

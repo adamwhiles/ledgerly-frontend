@@ -3,11 +3,24 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrashAlt, faEdit} from "@fortawesome/free-solid-svg-icons";
 
 function Entry(props) {
-  if (props) {
-    console.log("we have data in entry");
-  } else {
-    console.log("no data in entry");
-  }
+  const deleteEntry = async id => {
+    try {
+      const entry = await fetch("/api/deleteEntry", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        method: "POST",
+        body: JSON.stringify({
+          entryID: id
+        })
+      });
+      const res = await entry.json();
+      props.update(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <tr className="ledgerCell">
@@ -44,10 +57,16 @@ function Entry(props) {
       </td>
       <td width="5%">
         <span className="actionBtn">
-          <FontAwesomeIcon icon={faTrashAlt} onClick={() => alert("test")} />
+          <FontAwesomeIcon
+            icon={faTrashAlt}
+            onClick={() => deleteEntry(props.data.TransactionID)}
+          />
         </span>
         <span className="actionBtn">
-          <FontAwesomeIcon icon={faEdit} onClick={() => alert("test")} />
+          <FontAwesomeIcon
+            icon={faEdit}
+            onClick={() => props.editModal(props.data)}
+          />
         </span>
       </td>
     </tr>

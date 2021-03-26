@@ -12,17 +12,25 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const {Input, Field, Control, Label, Select} = Form;
 
-function AddModal(props) {
-  const [getCategory, setCategory] = useState("none");
-  const [getType, setType] = useState("none");
-  const [getAmount, setAmount] = useState("");
-  const [getDescription, setDescription] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
+function EditModal(props) {
+  const getTransactionType = () => {
+    if (props.entry.Amount < 0) {
+      return "2";
+    } else {
+      return "1";
+    }
+  };
 
-  const addEntry = async () => {
+  const [getCategory, setCategory] = useState(props.entry.CategoryID);
+  const [getType, setType] = useState(getTransactionType());
+  const [getAmount, setAmount] = useState(props.entry.Amount);
+  const [getDescription, setDescription] = useState(props.entry.Description);
+  const [startDate, setStartDate] = useState(new Date(props.entry.Date));
+
+  const editEntry = async () => {
     console.log(startDate);
     try {
-      const ledger = await fetch("/api/addEntry", {
+      const ledger = await fetch("/api/editEntry", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json"
@@ -33,7 +41,8 @@ function AddModal(props) {
           Amount: parseFloat(getAmount),
           Description: getDescription,
           Type: parseInt(getType),
-          Category: parseInt(getCategory)
+          Category: parseInt(getCategory),
+          EntryID: props.entry.TransactionID
         })
       });
       const res = await ledger.json();
@@ -66,13 +75,11 @@ function AddModal(props) {
     );
   });
 
-  DateInput.displayName = "Date Input";
-
   return (
     <Modal show={props.show} onClose={props.close}>
       <Modal.Card>
         <Modal.Card.Head showClose={true} onClose={props.close}>
-          <Modal.Card.Title>Add Entry</Modal.Card.Title>
+          <Modal.Card.Title>Edit Entry</Modal.Card.Title>
         </Modal.Card.Head>
         <Modal.Card.Body>
           <Field className="is-horizontal field-body">
@@ -170,14 +177,16 @@ function AddModal(props) {
         <Modal.Card.Foot
           style={{alignItems: "center", justifyContent: "right"}}
         >
-          <Button className="credit" onClick={() => addEntry()}>
-            Add
+          <Button className="credit" onClick={() => editEntry()}>
+            Confirm
           </Button>
-          <Button className="debit">Cancel</Button>
+          <Button className="debit" onClick={() => props.close()}>
+            Cancel
+          </Button>
         </Modal.Card.Foot>
       </Modal.Card>
     </Modal>
   );
 }
 
-export default AddModal;
+export default EditModal;
