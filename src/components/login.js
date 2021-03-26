@@ -1,12 +1,12 @@
-//import logo from "../logo.svg";
-//import "../css/login.css";
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {useHistory} from "react-router-dom";
+import {UserContext} from "../userContext";
 
 function LoginPage() {
   const [getEmail, setEmail] = useState("");
   const [getPassword, setPassword] = useState("");
   const [getMessage, setMessage] = useState("");
+  const {setUser} = useContext(UserContext);
 
   const history = useHistory();
 
@@ -22,6 +22,7 @@ function LoginPage() {
       .then(res => res.json())
       .then(data => {
         if (data.login === "success") {
+          setUser(data.user);
           setMessage(
             '<div class="notification is-primary">Login Success</div>'
           );

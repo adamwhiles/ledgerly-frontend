@@ -173,7 +173,9 @@ function AddModal(props) {
           <Button className="credit" onClick={() => addEntry()}>
             Add
           </Button>
-          <Button className="debit">Cancel</Button>
+          <Button className="debit" onClick={() => props.close()}>
+            Cancel
+          </Button>
         </Modal.Card.Foot>
       </Modal.Card>
     </Modal>
