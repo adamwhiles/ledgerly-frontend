@@ -24,7 +24,7 @@ function Entry(props) {
 
   return (
     <tr className="ledgerCell">
-      <td width="10%">
+      <td width="5%">
         <span className="tag">{props.data.Date}</span>
       </td>
       <td>{props.data.Description}</td>

@@ -1,31 +1,79 @@
 body {
   height: 100vh;
-  background-color: #F5F5E9;
+  background-color: #111111;
 }
 
 .header {
-  background-color: #274A50;
+  background-color: #CC665A;
 }
 
 .header a {
   color: #F5F5E9 !important;
 }
 
+.header a.navbar-item:hover {
+  background-color: #111111;
+}
+
 .ledgerHead {
-  background-color: #274A50;
+  background-color: #212121;
 }
 
 .ledgerHead th {
-  color: #F5F5E9 !important;
+  color: #4E9E98 !important;
+}
+
+.ledgerHead td, .ledgerHead th {
+  border: 1px solid #111111 !important;
+  border-width: 0 0 1px 0 !important;
+}
+
+.ledgerHead th:first-child {
+  border: 1px solid #111111 !important;
+  border-width: 0 1px 1px 0 !important;
+}
+
+.ledgerHead th:nth-child(4) {
+  border: 1px solid #111111 !important;
+  border-width: 0 1px 1px 0 !important;
 }
 
 .ledgerCell {
-  background-color: #497C8B !important;
+  background-color: #3e3e3e !important;
+}
+
+.ledgerCell td, .ledgerCell th {
+  border: 1px solid #111111 !important;
+  border-width: 0 0 1px 0 !important;
+}
+
+.ledgerCell td:first-child {
+  border: 1px solid #111111 !important;
+  border-width: 0 1px 1px 0 !important;
+}
+
+.ledgerCell td:first-child .tag {
+  font-size: 0.85em;
+  height: 2em;
+}
+
+.ledgerCell td:nth-child(4) {
+  border: 1px solid #111111 !important;
+  border-width: 0 1px 1px 0 !important;
 }
 
 .ledgerMonth {
-  background-color: #274A50 !important;
+  background-color: #212121 !important;
   font-size: 1.2em;
+}
+
+.ledgerMonth td, .ledgerMonth th {
+  border: 1px solid #111111 !important;
+  border-width: 0 0 1px 0 !important;
+}
+
+.ledgerCell:hover {
+  background-color: #3a3a3a !important;
 }
 
 .actionBtn {
@@ -34,7 +82,7 @@ body {
 }
 
 .table {
-  width: 100% !important;
+  width: 98% !important;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1em;
