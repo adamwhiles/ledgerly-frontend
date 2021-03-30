@@ -111,6 +111,8 @@ body, html {
   font-weight: bold;
   background-color: #274A50;
   color: #F5F5E9 !important;
+  border-collapse: separate;
+  ;
 }
 
 .debit {

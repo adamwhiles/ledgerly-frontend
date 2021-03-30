@@ -52,7 +52,7 @@ function MainLedger() {
       ) : null}
 
       <table className="table">
-        <thead className="ledgerHead">
+        <thead>
           <tr className="ledgerHead">
             <td colSpan="6">
               <button
