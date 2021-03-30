@@ -4,11 +4,35 @@ import {faTrashAlt, faEdit} from "@fortawesome/free-solid-svg-icons";
 import {Form} from "react-bulma-components";
 
 function Entry(props) {
-  const [getCleared, setCleared] = useState(false);
+  const checkCleared = () => {
+    if (props.data.Cleared === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const [getCleared, setCleared] = useState(checkCleared());
 
   const toggleCleared = async id => {
     console.log("Setting entry id " + id + " cleared state to " + !getCleared);
-    setCleared(!getCleared);
+    try {
+      const entry = await fetch("/api/toggleCleared", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        method: "POST",
+        body: JSON.stringify({
+          entryID: id,
+          cleared: !getCleared
+        })
+      });
+      const res = await entry.json();
+      setCleared(!getCleared);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const deleteEntry = async id => {
