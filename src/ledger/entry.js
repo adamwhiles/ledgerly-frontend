@@ -15,7 +15,6 @@ function Entry(props) {
   const [getCleared, setCleared] = useState(checkCleared());
 
   const toggleCleared = async id => {
-    console.log("Setting entry id " + id + " cleared state to " + !getCleared);
     try {
       const entry = await fetch("/api/toggleCleared", {
         headers: {
