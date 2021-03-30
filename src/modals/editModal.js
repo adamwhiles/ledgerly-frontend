@@ -23,7 +23,7 @@ function EditModal(props) {
 
   const [getCategory, setCategory] = useState(props.entry.CategoryID);
   const [getType, setType] = useState(getTransactionType());
-  const [getAmount, setAmount] = useState(props.entry.Amount);
+  const [getAmount, setAmount] = useState(Math.abs(props.entry.Amount));
   const [getDescription, setDescription] = useState(props.entry.Description);
   const [startDate, setStartDate] = useState(new Date(props.entry.Date));
 
