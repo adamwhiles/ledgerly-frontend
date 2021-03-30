@@ -1,6 +1,11 @@
-body {
+body, html {
   height: 100vh;
-  background-color: #111111;
+  background-color: #111111 !important;
+}
+
+.content {
+  height: 100% !important;
+  background-color: #111111 !important;
 }
 
 .header {
@@ -13,6 +18,12 @@ body {
 
 .header a.navbar-item:hover {
   background-color: #111111;
+}
+
+.table thead {
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .ledgerHead {
@@ -33,7 +44,7 @@ body {
   border-width: 0 1px 1px 0 !important;
 }
 
-.ledgerHead th:nth-child(4) {
+.ledgerHead th:nth-child(5) {
   border: 1px solid #111111 !important;
   border-width: 0 1px 1px 0 !important;
 }
@@ -57,23 +68,32 @@ body {
   height: 2em;
 }
 
-.ledgerCell td:nth-child(4) {
+.ledgerCell td:nth-child(5) {
   border: 1px solid #111111 !important;
   border-width: 0 1px 1px 0 !important;
 }
 
-.ledgerMonth {
+.table tr:nth-child(odd) td:not(th, .ledgerMonth td) {
   background-color: #212121 !important;
-  font-size: 1.2em;
+}
+
+.table tr:nth-child(odd):hover td:not(th, .ledgerMonth td, .ledgerHead td) {
+  background-color: #2e2e2e !important;
+}
+
+.table .ledgerMonth td {
+  background-color: #111111 !important;
+  font-size: 1.5em;
 }
 
 .ledgerMonth td, .ledgerMonth th {
   border: 1px solid #111111 !important;
   border-width: 0 0 1px 0 !important;
+  color: #4E9E98;
 }
 
 .ledgerCell:hover {
-  background-color: #3a3a3a !important;
+  background-color: #2e2e2e !important;
 }
 
 .actionBtn {
@@ -86,6 +106,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-top: 1em;
+  margin-bottom: 20px;
   font-size: .8em !important;
   font-weight: bold;
   background-color: #274A50;

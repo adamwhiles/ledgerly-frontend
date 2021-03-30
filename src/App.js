@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {BrowserRouter, Route} from "react-router-dom";
 import LoginPage from "./components/login";
+import Profile from "./components/profile";
 import Header from "./components/header";
 import MainLedger from "./ledger/ledger";
 import {UserContext} from "./userContext";
@@ -18,6 +19,7 @@ function App() {
             <div>
               <Route path="/" component={LoginPage} exact />
               <Route path="/ledger" component={MainLedger} exact />
+              <Route path="/profile" component={Profile} exact />
             </div>
           </div>
         </BrowserRouter>

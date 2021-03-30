@@ -1,8 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrashAlt, faEdit} from "@fortawesome/free-solid-svg-icons";
+import {Form} from "react-bulma-components";
 
 function Entry(props) {
+  const [getCleared, setCleared] = useState(false);
+
+  const toggleCleared = async id => {
+    console.log("Setting entry id " + id + " cleared state to " + !getCleared);
+    setCleared(!getCleared);
+  };
+
   const deleteEntry = async id => {
     try {
       const entry = await fetch("/api/deleteEntry", {
@@ -22,12 +30,24 @@ function Entry(props) {
     }
   };
 
+  const {Checkbox, Control} = Form;
+
   return (
     <tr className="ledgerCell">
       <td width="5%">
-        <span className="tag">{props.data.Date}</span>
+        <span className="tag">{props.data.Date.slice(0, 5)}</span>
       </td>
       <td>{props.data.Description}</td>
+      <td width="5%">
+        <Control>
+          <Checkbox
+            type="checkbox"
+            checked={getCleared}
+            value="cleared"
+            onChange={() => toggleCleared(props.data.TransactionID)}
+          />
+        </Control>
+      </td>
       <td width="5%">
         {props.data.Amount < 0.0 ? (
           <span className="tag debit">

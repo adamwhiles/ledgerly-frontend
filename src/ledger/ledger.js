@@ -32,7 +32,7 @@ function MainLedger() {
   };
 
   return (
-    <div>
+    <div className="content">
       {getAddModal ? (
         <AddModal
           show={getAddModal}
@@ -54,20 +54,19 @@ function MainLedger() {
       <table className="table">
         <thead className="ledgerHead">
           <tr className="ledgerHead">
-            <td colSpan="5">
+            <td colSpan="6">
               <button
-                className="button is-info is-light addButton"
+                className="button is-info is-light addButton is-small"
                 onClick={() => setAddModal(true)}
               >
                 Add
               </button>
             </td>
           </tr>
-        </thead>
-        <thead className="ledgerHead">
           <tr className="ledgerHead">
             <th>Date</th>
             <th>Description</th>
+            <th></th>
             <th>Amount</th>
             <th>Balance</th>
             <th>Actions</th>
@@ -87,7 +86,9 @@ function MainLedger() {
                   });
                   entry = (
                     <tr className="ledgerMonth">
-                      <td colSpan="5">{monthName}</td>
+                      <td colSpan="6">
+                        {monthName} {e.Date.slice(6)}
+                      </td>
                     </tr>
                   );
                 }
@@ -98,7 +99,9 @@ function MainLedger() {
                   });
                   entry = (
                     <tr className="ledgerMonth">
-                      <td colSpan="5">{monthName}</td>
+                      <td colSpan="6">
+                        {monthName} {e.Date.slice(6)}
+                      </td>
                     </tr>
                   );
                 }

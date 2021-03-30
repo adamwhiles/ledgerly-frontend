@@ -9,9 +9,8 @@ function Header() {
 
   // Check if user is logged in and set our UserContext to the current user id
   useAsyncEffect(async () => {
-    if (await isLoggedIn()) {
-      setUser(isLoggedIn());
-    }
+    const currentUser = await isLoggedIn();
+    setUser(currentUser);
   }, []);
 
   // Our reusable isLoggedIn method that calls the backend to check for the current
@@ -53,10 +52,7 @@ function Header() {
                   Home
                 </a>
 
-                <a
-                  href="{{ url_for('ledger.getLedger') }}"
-                  className="navbar-item"
-                >
+                <a href="/ledger" className="navbar-item">
                   Ledger
                 </a>
                 {/*
@@ -64,10 +60,7 @@ function Header() {
                 */}
                 {getUser ? (
                   <>
-                    <a
-                      href="{{ url_for('main.profile') }}"
-                      className="navbar-item"
-                    >
+                    <a href="/profile" className="navbar-item">
                       Profile
                     </a>
                     <a
