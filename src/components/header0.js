@@ -2,7 +2,6 @@ import React, {useContext} from "react";
 import useAsyncEffect from "use-async-effect";
 import {useHistory} from "react-router-dom";
 import {UserContext} from "../userContext";
-import {Navbar} from "react-bulma-components";
 
 function Header() {
   const history = useHistory();
@@ -43,36 +42,51 @@ function Header() {
   };
 
   return (
-    <Navbar>
-      <Navbar.Menu>
-        <Navbar.Container position="end">
-          <Navbar.Item onClick={() => history.push("/")}>Home</Navbar.Item>
-          {/*
+    <section className="hero header">
+      <div className="hero-head">
+        <nav className="navbar">
+          <div className="container">
+            <div id="navbarMenuHeroA" className="navbar-menu">
+              <div className="navbar-end">
+                <a href="/" className="navbar-item">
+                  Home
+                </a>
+
+                <a href="/ledger" className="navbar-item">
+                  Ledger
+                </a>
+                {/*
                     Depending on if the user is logged in, show login,logout, profile buttons
                 */}
-          {getUser ? (
-            <>
-              <Navbar.Item onClick={() => history.push("/ledger")}>
-                Ledger
-              </Navbar.Item>
-              <Navbar.Item onClick={() => history.push("/profile")}>
-                Profile
-              </Navbar.Item>
-              <Navbar.Item onClick={() => logout()}>Logout</Navbar.Item>
-            </>
-          ) : (
-            <>
-              <Navbar.Item onClick={() => history.push("/login")}>
-                Login
-              </Navbar.Item>
-              <Navbar.Item onClick={() => history.push("/signup")}>
-                Signup
-              </Navbar.Item>
-            </>
-          )}
-        </Navbar.Container>
-      </Navbar.Menu>
-    </Navbar>
+                {getUser ? (
+                  <>
+                    <a href="/profile" className="navbar-item">
+                      Profile
+                    </a>
+                    <a
+                      href="#"
+                      onClick={() => logout()}
+                      className="navbar-item"
+                    >
+                      Logout
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <a href="/login" className="navbar-item">
+                      Login
+                    </a>
+                    <a href="/signup" className="navbar-item">
+                      Sign Up
+                    </a>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </section>
   );
 }
 

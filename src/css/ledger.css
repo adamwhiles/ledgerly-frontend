@@ -8,16 +8,48 @@ body, html {
   background-color: #111111 !important;
 }
 
-.header {
+.navbar-menu {
   background-color: #CC665A;
 }
 
-.header a {
+.navbar-menu a {
   color: #F5F5E9 !important;
 }
 
-.header a.navbar-item:hover {
+.navbar-menu a.navbar-item:hover {
   background-color: #111111;
+}
+
+.hero-body .container {
+  max-width: 388px !important;
+}
+
+.mainList {
+  margin-top: 25px;
+  padding-left: 10px;
+}
+
+.listIcon {
+  font-size: 16px;
+  color: #CC665A;
+}
+
+.signupButton {
+  margin-right: 25%;
+}
+
+.title {
+  color: #CC665A !important;
+}
+
+.login {
+  background-color: #CC665A !important;
+  border: none !important;
+  color: #F5F5E9 !important;
+}
+
+.listText {
+  margin-left: 10px;
 }
 
 .table thead {
@@ -135,4 +167,12 @@ body, html {
 
 .date_field {
   z-index: 100;
+}
+
+.failed {
+  color: red;
+}
+
+.success {
+  color: green;
 }

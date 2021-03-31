@@ -2,9 +2,11 @@ import React, {useState, useContext} from "react";
 import {useHistory} from "react-router-dom";
 import {UserContext} from "../userContext";
 
-function LoginPage() {
+function SignupPage() {
+  const [getName, setName] = useState("");
   const [getEmail, setEmail] = useState("");
   const [getPassword, setPassword] = useState("");
+  const [getPassword2, setPassword2] = useState("");
   const [getMessage, setMessage] = useState("");
   const {setUser} = useContext(UserContext);
 
@@ -45,13 +47,27 @@ function LoginPage() {
               <div className="control">
                 <input
                   className="input is-large"
+                  type="text"
+                  name="name"
+                  value={getName}
+                  onChange={e => {
+                    setName(e.target.value);
+                  }}
+                  placeholder="Name"
+                />
+              </div>
+            </div>
+            <div className="field">
+              <div className="control">
+                <input
+                  className="input is-large"
                   type="email"
                   name="email"
                   value={getEmail}
                   onChange={e => {
                     setEmail(e.target.value);
                   }}
-                  placeholder="Your Email"
+                  placeholder="Email"
                   autoFocus=""
                 />
               </div>
@@ -65,13 +81,26 @@ function LoginPage() {
                   name="password"
                   value={getPassword}
                   onChange={e => setPassword(e.target.value)}
-                  placeholder="Your Password"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+
+            <div className="field">
+              <div className="control">
+                <input
+                  className="input is-large"
+                  type="password"
+                  name="password2"
+                  value={getPassword2}
+                  onChange={e => setPassword2(e.target.value)}
+                  placeholder="Verify Password"
                 />
               </div>
             </div>
 
             <button className="button login is-block is-large is-fullwidth">
-              Login
+              Sign Up
             </button>
           </form>
         </div>
@@ -80,4 +109,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default SignupPage;

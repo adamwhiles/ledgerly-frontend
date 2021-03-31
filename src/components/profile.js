@@ -46,7 +46,23 @@ function Profile() {
   };
 
   return (
-    <div>{getInfo !== null ? <span>Email: {getInfo.Email}</span> : null}</div>
+    <div>
+      {getInfo !== null ? (
+        <div className="is-hero is-fullheight">
+          <div className="hero-body">
+            <div className="container has-text-centered">
+              <div className="box">
+                <div className="has-text-left">{getInfo.Name}</div>
+                <div className="has-text-left">Email: {getInfo.Email}</div>
+                <div className="has-text-left">
+                  Starting Balance: {getInfo.StartingBalance}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </div>
   );
 }
 
